@@ -1,11 +1,12 @@
 let playerScore = 0
 let computerScore = 0
 let drawScore = 0
-let drawRound = 'Tie round!'
-let playerRound = 'Player wins the round!'
-let computerRound = 'Computer wins the round!'
-let playerWin = 'Player wins the game!'
-let computerWin = 'Computer wins the game!'
+const playerWin = 'Player wins the game!'
+const computerWin = 'Computer wins the game!'
+const selectionButtons = document.querySelectorAll('[data-selection]');
+
+//the scores will tally
+// the round end summary at the bottom will appear
 
 function computerPlay() {
     const gameItems = ['Rock', 'Paper', 'Scissors'];
@@ -15,37 +16,34 @@ function computerPlay() {
     return gameItem;
 }
 
-function playRound(playerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerPlay().toLowerCase();
-    if (playerSelection == computerSelection) {
-        return drawRound;
+selectionButtons.forEach(selectionButton => {
+    selectionButton.addEventListener('click', e => {
+        const selectionName = selectionButton.dataset.selection
+        playerSelection(selectionName);
+    })
+});
+
+function playerSelection(selection) {
+    const computerSelection = computerPlay().toLowerCase();   //returns random rock, paper or scissors
+    // console.log(selection);
+    // console.log(computerSelection);
+    if (selection == computerSelection) {
+        document.querySelector('.roundOutcome').innerText = 'Tie Round!';
+        // return console.log(drawRound);
     } else if (
-        (playerSelection == 'rock' && computerSelection == 'scissors') ||
-        (playerSelection == 'paper' && computerSelection == 'rock') ||
-        (playerSelection == 'scissors' && computerSelection == 'paper')
-    ) { return playerRound;
-    } else if (
-        (computerSelection == 'rock' && playerSelection == 'scissors') ||
-        (computerSelection == 'paper' && playerSelection == 'rock') ||
-        (computerSelection == 'scissors' && playerSelection == 'paper')
-    ) { return computerRound;
+        (selection == 'rock' && computerSelection == 'scissors') ||
+        (selection == 'paper' && computerSelection == 'rock') ||
+        (selection == 'scissors' && computerSelection == 'paper')
+    ) { document.querySelector('.roundOutcome').innerText = 'Player wins the round!';
+        document.querySelector('.playerScore').innerText = playerScore++;
+        // return console.log(playerRound);
+    } else {
+        document.querySelector('.roundOutcome').innerText = 'Computer wins the round!';
+        document.querySelector('.computerScore').innerText = computerScore++;
+        // return console.log(computerRound);
     }
-  }
-  
-  for (let i = 0; i < 1000; i++) {
-    let playerChoice = prompt("Rock, paper, or scissors?").toLowerCase();
-    let computerSelection = computerPlay();
-    let result = playRound(playerChoice, computerSelection);
-    console.log(result);
-    talliedScore(result);
-    console.log('Your score is ' + playerScore);
-    console.log('The computer\'s score is ' + computerScore);
-    if (
-        (playerScore === 5) || (computerScore === 5)
-    ) { break;
-    }
- }
+}
+console.log (playerSelection(selection)) // tests if function is working
 
  function talliedScore(result) {
      if (result == playerRound) {
@@ -55,9 +53,9 @@ function playRound(playerSelection) {
      } else {
          drawScore++;
      }
-     if (playerScore === 5) {
-         console.log(playerWin);
-     } else if (computerScore === 5) {
-         console.log (computerWin);
-     }
+    //  if (playerScore === 5) {
+    //      console.log(playerWin);
+    //  } else if (computerScore === 5) {
+    //      console.log (computerWin);
+    //  }
  }

@@ -1,0 +1,63 @@
+* {
+    font-family: 'Times New Roman', sans-serif;
+}
+
+body {
+    background-color: #666;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+    font-weight: 700;
+    font-size: 4.5rem;
+}
+
+.gameContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.selections {
+    display: flex;
+    gap: 3rem;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.img {
+    transition: 200ms;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 0.2em;
+    box-shadow: 0 10px 30px black;
+}
+
+.img:hover {
+    transform: scale(1.10);
+    transition: 200ms;
+}
+
+.playersContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin: 1em;
+    font-size: 3em;
+    font-weight: 500;
+}
+
+.playerScore, .computerScore {
+    text-align: center;
+    padding-bottom: 0.1em;
+}
+
+.roundContainer {
+    display: flex;
+    justify-content: center;
+    font-size: 2.5em;
+}
